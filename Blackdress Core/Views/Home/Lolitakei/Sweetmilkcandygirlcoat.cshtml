@@ -1,0 +1,138 @@
+﻿
+@{
+    ViewData["Title"] = "Sweetmilkcandygirlcoat";
+}
+<head>
+    <!-- CSS only -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:deeppink">
+    <div class="container-fluid" style="background-color:deeppink">
+        <a class="navbar-brand" href="/Home/Index" style="color:white">Black Dress</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Lolita Kei
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/Home/vestidos">Vestidos</a></li>
+                        <li><a class="dropdown-item" href="/Home/Abrigos">Abrigos</a></li>
+                        <li><a class="dropdown-item" href="/Home/blusas">Blusas</a></li>
+                        <li><a class="dropdown-item" href="/Home/zapatos">Zapatos</a></li>
+                        <li><a class="dropdown-item" href="/Home/accesorios">Accesorios</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/carritodecompra">Carrito de compra</a></li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/genpedprov">Administracion de Stock</a></li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/bodega">Bodega</a></li>
+            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/registrarse">Registarse</a></li>
+            </ul>
+            <form class="d-flex" method="post">
+                <input class="form-control me-2" type="text" placeholder="E-mail or User" aria-label="usuario" required style="width:150px">
+                <input class="form-control me-2" type="password" placeholder="Password" aria-label="contraseña" required style="width:150px">
+                <button class="btn btn-outline-success" type="submit">Acceder</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<h1>
+    Sweet Milk Candy Girl Sailor Lolita Sweet Lolita Coat
+</h1>
+
+<br>
+<figure class="figure ">
+    <img src="~/img/lolita/sweet milk candy girl/40570dbc54.jpg.240x240.jpg" class="figure-img img-fluid rounded">
+    <figcaption class="figure-caption"></figcaption>
+</figure>
+<figure class="figure">
+    <img src="~/img/lolita/sweet milk candy girl/7f8046cc9d.jpg.240x240.jpg" class="figure-img img-fluid rounded" alt="...">
+    <figcaption class="figure-caption"></figcaption>
+</figure>
+<figure class="figure">
+    <img src="~/img/lolita/sweet milk candy girl/9139627790.jpg.240x240.jpg" class="figure-img img-fluid rounded" alt="...">
+    <figcaption class="figure-caption"></figcaption>
+</figure>
+
+<br>
+<!--formulario para cotizar producto-->
+<form method="post" action="/CarritoCompra/agregaralcarrito">
+    <input type="text" name="nombre_producto" value="Sailor lolita coat candy milk" readonly />
+    <p>Precio</p>
+    <input type="number" name="precio" value="47990" readonly />
+    <p>Tamaño</p>
+    <input type="text" placeholder="que talla eres?" name="talla" value="" required />
+    <p>color</p>
+    <input type="text" placeholder="Color" name="color" value="beige blue" readonly>
+    <br>
+    <p>Informacion adicional</p>
+    <input type="text" name="medidasCorporales" placeholder="" value="n" />
+    <br>
+    <p>Costos de envio: RM: $7.990, Regiones: 15.990</p>
+    <br>
+    <p>Entrega:</p>
+    <br>
+    <p>15 dias habiles</p>
+    <input type="submit" class="btn btn-success" value="Agregar al carrito">
+</form>
+
+<br>
+
+
+<!--Carrusel de imagenes del producto-->
+<h3 class="h3">Detalles del Vestido</h3>
+<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/lolita/sweet milk candy girl/617f2198e5.jpg" class="d-block h-100 w-50" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/lolita/sweet milk candy girl/c1d143bb9a.jpg" class="d-block h-100 w-50" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/lolita/sweet milk candy girl/c75cf39fb1.jpg" class="d-block h-100 w-50" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev btn-dark" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next btn-dark" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item">Informacion de talla </li>
+    <li class="list-group-item">
+        Las medidas a continuación son las medidas planas del abrigo, ¡el busto de tu cuerpo debe ser de 3 a 4 cm más pequeño! ¡El ancho de los hombros de su cuerpo puede ser 2-3 cm más ancho!
+        <br>
+        --- Talla S: 86cm (busto); 37cm (ancho de hombros); 53cm (largo de manga); 93cm (largo del abrigo)!
+        <br>
+        --- Talla M: 90cm (busto); 38cm (ancho de hombros); 54cm (largo de manga); 94cm (largo del abrigo)!
+        <br>
+        --- Talla L: 94cm (busto); 39 cm (ancho de hombros); 55 cm (largo de la manga); 95cm (largo del abrigo)!
+        <br>
+        --- Talla XL: 98cm (busto); 40 cm (ancho de hombros); 56cm (largo de manga); ¡96 cm (largo del abrigo)!
+        <br>
+        --- Talla XXL: 102cm (busto); 41cm (ancho de hombros); 56cm (largo de manga); ¡96 cm (largo del abrigo)!
+        <br>
+    </li>
+</ul>
