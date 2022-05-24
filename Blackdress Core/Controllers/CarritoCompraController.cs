@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 
 
@@ -20,24 +17,24 @@ namespace Blackdress_Core.Controllers
             int precioEntero = int.Parse(precio);
             int subtotal = 0;
             string tabla = "";
-            string compra = nombre_producto + ","+talla +","+ color +","+ precio +"." ;
+            string compra = nombre_producto + "," + talla + "," + color + "," + precio + ".";
             string[] arreglo = compra.Split('.');
-            
-                for (int i = 0; i < arreglo.Length; i++)
+
+            for (int i = 0; i < arreglo.Length; i++)
+            {
+                tabla = tabla + "<tr>";
+                string[] arreglo2 = arreglo[i].Split(',');
+                for (int j = 0; j < arreglo2.Length; j++)
                 {
-                    tabla = tabla + "<tr>";
-                    string[] arreglo2 = arreglo[i].Split(',');
-                    for (int j = 0; j < arreglo2.Length; j++) 
-                        {
-                            tabla = tabla + "<td>" + arreglo2[j] + "</td>";
-                            ViewBag.tabla = tabla;
-                        }
+                    tabla = tabla + "<td>" + arreglo2[j] + "</td>";
                     ViewBag.tabla = tabla;
-                    
                 }
-            
-                tabla = tabla + "</tr>";
-                ViewBag.subtotal = subtotal;
+                ViewBag.tabla = tabla;
+
+            }
+
+            tabla = tabla + "</tr>";
+            ViewBag.subtotal = subtotal;
             ViewBag.nroOrden = nroOrden;
             ViewBag.estadoconfeccion = estadoconfeccion;
             ViewBag.fechacotizacion = fechacotizacion;
@@ -55,7 +52,7 @@ namespace Blackdress_Core.Controllers
             string rut, string email)
         {
             estadoconfeccion = "pendiente de envio a taller";
-            ordendecompra = DateTime.Now.ToString()+rut+valorcotizacion.ToString();
+            ordendecompra = DateTime.Now.ToString() + rut + valorcotizacion.ToString();
             SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             con.Open();
             var sentencia = new SqlCommand();
@@ -79,7 +76,7 @@ namespace Blackdress_Core.Controllers
             {
                 mensaje = "Registro guardado";
             }
-            else 
+            else
             {
                 mensaje = "Algo anda mal";
             }
@@ -112,8 +109,8 @@ namespace Blackdress_Core.Controllers
             while (dr.Read())
             {
                 pedidos = pedidos + "<tr><td>" + dr["NroOrdenDeCompra"].ToString() + "</td><td>" + dr["medidasCorporales"].ToString() + "</td><td>" + dr["Rut"].ToString() + "</td><td>" +
-                dr["EstadoDeConfeccion"].ToString()+"</td><td>"+dr["FechaEstimada"].ToString()+ "</td><td>"+dr["ValorCotizacion"].ToString()+ "</td><td>"+dr["Email"].ToString()+
-                "</td><td>"+dr["FechaSolicitud"].ToString()+ "</td><td>"+dr["tallas"].ToString()+ "</td><td>"+dr["color"].ToString()+ "</td><td>"+dr["nombreproducto"].ToString()+"</td></tr>";
+                dr["EstadoDeConfeccion"].ToString() + "</td><td>" + dr["FechaEstimada"].ToString() + "</td><td>" + dr["ValorCotizacion"].ToString() + "</td><td>" + dr["Email"].ToString() +
+                "</td><td>" + dr["FechaSolicitud"].ToString() + "</td><td>" + dr["tallas"].ToString() + "</td><td>" + dr["color"].ToString() + "</td><td>" + dr["nombreproducto"].ToString() + "</td></tr>";
             }
             ViewBag.pedidos = pedidos;
             return View("/Views/Home/EstadoConfecciones.cshtml");
@@ -123,7 +120,7 @@ namespace Blackdress_Core.Controllers
             SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             var sentencia = new SqlCommand();
             sentencia.CommandType = System.Data.CommandType.Text;
-            sentencia.CommandText ="update PedidosDeVestuario set EstadoDeConfeccion = @estadoconf where NroOrdenDeCompra= @nroroden";
+            sentencia.CommandText = "update PedidosDeVestuario set EstadoDeConfeccion = @estadoconf where NroOrdenDeCompra= @nroroden";
             con.Open();
             sentencia.Parameters.Add(new SqlParameter("@estadoconf", estadodeconfeccion));
             sentencia.Parameters.Add(new SqlParameter("@nroroden", numerodeorden));
@@ -147,7 +144,7 @@ namespace Blackdress_Core.Controllers
             sentencia.Connection = con;
             sentencia.CommandType = System.Data.CommandType.Text;
             sentencia.CommandText = "select * from PedidosDeVestuario where " +
-                "NroOrdenDeCompra = '"+numerodeorden+"'";
+                "NroOrdenDeCompra = '" + numerodeorden + "'";
             con.Open();
             dr = sentencia.ExecuteReader();
             var pedidos = "";

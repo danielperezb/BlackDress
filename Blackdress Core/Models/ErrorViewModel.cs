@@ -1,5 +1,3 @@
-using System;
-
 namespace Blackdress_Core.Models
 {
     public class ErrorViewModel

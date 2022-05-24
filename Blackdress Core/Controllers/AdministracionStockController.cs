@@ -1,20 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 namespace Blackdress_Core.Controllers
+
 {
     public class AdministracionStockController : Controller
     {
         public IActionResult cargaGD(string Nombreproducto, string color,
             string descripcion, string proveedores, int cantidad)
-           
+
         {
 
             int precioUnitario = 0;
-            
+
             string rut = "";
             if (proveedores == "Goth and Telas")
             {
@@ -156,7 +154,7 @@ namespace Blackdress_Core.Controllers
             ViewBag.precioUnitario = precioUnitario;
             ViewBag.iva = ivatotal;
             ViewBag.rut = rut;
-            ViewBag.total =total;
+            ViewBag.total = total;
             ViewBag.nombreprov = proveedores;
             ViewBag.color = color;
             ViewBag.descripcion = descripcion;
@@ -168,8 +166,8 @@ namespace Blackdress_Core.Controllers
         public IActionResult GenPedido(string rutprov, string proveedores, string descripcion, int precioU, int cantidad, int iva, int totalapagar, string nombreprod, string color)
         {
 
-            
             SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
             string nrodeguia = DateTime.Now.ToString("O");
             var sentencia = new SqlCommand();
             sentencia.CommandType = System.Data.CommandType.Text;
@@ -185,7 +183,6 @@ namespace Blackdress_Core.Controllers
             sentencia.Parameters.Add(new SqlParameter("@p9", nombreprod));
             sentencia.Parameters.Add(new SqlParameter("@p10", color));
             sentencia.Connection = con;
-            con.Open();
             var result = sentencia.ExecuteNonQuery();
             var mensaje = "";
             if (result > 0)
@@ -241,7 +238,7 @@ namespace Blackdress_Core.Controllers
             return View("Views/Home/Bodega.cshtml");
         }
 
-        public IActionResult updateStock(string nombreprod, string color, int cantidad )
+        public IActionResult updateStock(string nombreprod, string color, int cantidad)
         {
             SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             var sentencia = new SqlCommand();
