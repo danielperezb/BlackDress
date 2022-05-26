@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 namespace Blackdress_Core.Controllers
 
 {
@@ -166,13 +167,43 @@ namespace Blackdress_Core.Controllers
         public IActionResult GenPedido(string rutprov, string proveedores, string descripcion, int precioU, int cantidad, int iva, int totalapagar, string nombreprod, string color)
         {
 
-            SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            con.Open();
+            //SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //con.Open();
             string nrodeguia = DateTime.Now.ToString("O");
-            var sentencia = new SqlCommand();
-            sentencia.CommandType = System.Data.CommandType.Text;
-            sentencia.CommandText = "insert into Compras (rut_proveedor, Nombre, Descricion, PrecioUnitario, cantidad, Iva, TotalAPagar, NroGuiaDeDespacho, Nombre_producto, Color) values (@p1, @p2, @p3,@p4,@p5, @p6, @p7, @p8, @p9, @p10)";
-            sentencia.Parameters.Add(new SqlParameter("@p1", rutprov));
+            MySqlConnection conexion = new MySqlConnection("server=127.0.0.1; user=root; database=blackdress; password='';");
+            MySqlCommand comando = new MySqlCommand();
+            comando.Connection = conexion;
+            conexion.Open();
+            comando.CommandText = "insert into Compras (rut_proveedor, Nombre, Descricion, PrecioUnitario, cantidad, Iva, TotalAPagar, NroGuiaDeDespacho, Nombre_producto, Color) values " +
+                "(@rut_proveedor,@Nombre,@Descricion,@PrecioUnitario,@cantidad,@Iva,@TotalAPagar,@NroGuiaDeDespacho,@Nombre_producto,@Color);";
+
+            string mensaje = "";
+
+            comando.Parameters.Clear();
+            comando.Parameters.AddWithValue("rut_proveedor", rutprov);
+            comando.Parameters.AddWithValue("Nombre", proveedores);
+            comando.Parameters.AddWithValue("Descricion", descripcion);
+            comando.Parameters.AddWithValue("PrecioUnitario", precioU);
+            comando.Parameters.AddWithValue("cantidad", cantidad);
+            comando.Parameters.AddWithValue("Iva", iva);
+            comando.Parameters.AddWithValue("TotalAPagar", totalapagar);
+            comando.Parameters.AddWithValue("NroGuiaDeDespacho", nrodeguia);
+            comando.Parameters.AddWithValue("Nombre_producto", nombreprod);
+            comando.Parameters.AddWithValue("Color", color);
+
+            int nfilas = comando.ExecuteNonQuery();
+            if (nfilas > 0)
+            {
+                mensaje = ("Datos guardados correctamente , que jebus te bendiga :)");
+            }
+            else
+            {
+                mensaje = "Ha ocurrido un error, favor de verificar datos ingresados";
+            }
+
+            comando.Dispose();
+
+            /*sentencia.Parameters.Add(new SqlParameter("@p1", rutprov));
             sentencia.Parameters.Add(new SqlParameter("@p2", proveedores));
             sentencia.Parameters.Add(new SqlParameter("@p3", descripcion));
             sentencia.Parameters.Add(new SqlParameter("@p4", precioU));
@@ -182,17 +213,17 @@ namespace Blackdress_Core.Controllers
             sentencia.Parameters.Add(new SqlParameter("@p8", nrodeguia));
             sentencia.Parameters.Add(new SqlParameter("@p9", nombreprod));
             sentencia.Parameters.Add(new SqlParameter("@p10", color));
-            sentencia.Connection = con;
-            var result = sentencia.ExecuteNonQuery();
-            var mensaje = "";
-            if (result > 0)
-            {
-                mensaje = "Registro guardado";
-            }
-            else
-            {
-                mensaje = "Algo anda mal";
-            }
+           // sentencia.Connection = con;
+            var result = sentencia.ExecuteNonQuery();*/
+            //var mensaje = "";
+            /* if (result > 0)
+             {
+                 mensaje = "Registro guardado";
+             }
+             else
+             {
+                 mensaje = "Algo anda mal";
+             }*/
             ViewBag.precioUnitario = precioU;
             ViewBag.iva = iva;
             ViewBag.rut = rutprov;
@@ -203,6 +234,7 @@ namespace Blackdress_Core.Controllers
             ViewBag.nombreproducto = nombreprod;
             ViewBag.gd = nrodeguia;
             ViewBag.cantidad = cantidad;
+            ViewBag.mensaje = mensaje;
             return View("Views/Home/Guiadedespacho.cshtml");
         }
 
@@ -265,20 +297,36 @@ namespace Blackdress_Core.Controllers
 
         public IActionResult MostrarStock()
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-            var sentencia = new SqlCommand();
-            SqlDataReader dr;
-            sentencia.Connection = con;
-            sentencia.CommandType = System.Data.CommandType.Text;
-            sentencia.CommandText = "select * from Stock";
-            con.Open();
-            dr = sentencia.ExecuteReader();
+            //SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            //var sentencia = new SqlCommand();
+            MySqlConnection conexion;
+            conexion = new MySqlConnection("Server = 127.0.0.1; Database = blackdress; Uid = root; Pwd =;");
+            string query = "SELECT * FROM stock";
+            MySqlCommand sql = new MySqlCommand(query, conexion);
+            MySqlDataReader reader = sql.ExecuteReader();
             var pedidos = "";
-            while (dr.Read())
+            if (reader.HasRows)
             {
-                pedidos = pedidos + "<tr><td>" + dr["nombre_producto"] + "</td><td>" + dr["Color"] + "</td><td>" + dr["cantidad"] + "</td></tr>";
+                if (reader.Read())
+                {
+                    string nombreProducto = reader.GetString("nombre_producto");
+                    string color = reader.GetString("Color");
+                    string cantidad = reader.GetString("cantidad");
+                    pedidos += pedidos;
+                }
             }
             ViewBag.stock = pedidos;
+            //SqlDataReader dr;
+            //sentencia.Connection = con;
+            //sentencia.CommandType = System.Data.CommandType.Text;
+            //sentencia.CommandText = "select * from Stock";
+            //con.Open();
+            //dr = sentencia.ExecuteReader();
+            //var pedidos = "";
+            //while (dr.Read())
+            //{
+            // pedidos = pedidos + "<tr><td>" + dr["nombre_producto"] + "</td><td>" + dr["Color"] + "</td><td>" + dr["cantidad"] + "</td></tr>";
+            //}
             return View("/Views/Home/Bodega.cshtml");
         }
     }
