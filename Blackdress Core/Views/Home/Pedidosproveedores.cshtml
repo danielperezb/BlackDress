@@ -7,11 +7,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontello.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="icon" href="img/favicon.svg" type="image/svg" />
+    <script src="https://kit.fontawesome.com/6a84b49c1b.js" crossorigin="anonymous"></script>
 </head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:deeppink">
-    <div class="container-fluid" style="background-color:deeppink">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4" style="background-color:deeppink">
+    <div class="container-fluid rounded pt-3 pb-3" style="background-color:deeppink">
+
         <a class="navbar-brand" href="/Home/Index" style="color:white">Black Dress</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,78 +41,104 @@
                 </li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/carritodecompra">Carrito de compra</a></li>
+                <li class="nav-item "><a class="nav-link" href="/Home/carritodecompra">Carrito de compra</a></li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/genpedprov">Administracion de Stock</a></li>
+                <li class="nav-item"><a class="nav-link " href="/Home/genpedprov">Administracion de Stock</a></li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/Estadoconfecciones">Confecciones</a></li>
+                <li class="nav-item "><a class="nav-link " href="/Home/Estadoconfecciones">Confecciones</a></li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/bodega">Bodega</a></li>
+                <li class="nav-item"><a class="nav-link " href="/Home/bodega">Bodega</a></li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/registrarse">Registarse</a></li>
+                <li class="nav-item "><a class="nav-link" href="/Home/registrarse">Registarse</a></li>
             </ul>
-            <form class="d-flex" method="post">
-                <input class="form-control me-2" type="text" placeholder="E-mail or User" aria-label="usuario" required style="width:150px">
-                <input class="form-control me-2" type="password" placeholder="Password" aria-label="contraseña" required style="width:150px">
-                <button class="btn btn-outline-success" type="submit">Acceder</button>
+            <form class="d-flex" method="post" action="indice/login" onsubmit="">
+                <input class="form-control me-2" type="text" placeholder="Rut" aria-label="Rut" required style="width:150px" name="rut" id="rut">
+                <input class="form-control me-2" type="password" placeholder="Password" aria-label="contraseña" required style="width:150px" name="pass" id="pass">
+                <input class="btn btn-light btn-outline-success" type="submit" value="Acceder" />
+                @ViewBag.mensaje
             </form>
         </div>
     </div>
 </nav>
 <br>
-<h1 class="h1">Pedidos proveedores</h1>
+<h1 class="h4 text-center mb-3" >Pedidos proveedores</h1>
 
 <form name="formproveedores" method="get" action="/AdministracionStock/cargaGD" class="form-group btn-group-lg bg-info">
-    <label>Rut Proveedor</label>
-    <input type="text" name="rut" value="@ViewBag.rut" readonly />
-    <br />
-    <label class="form-row">Proveedor:</label>
-    <select class="form-control-sm" name="proveedores">
-        <option name="Nombre" value="Goth and Telas">Goth and Telas</option>
-        <option name="Nombre" value="Telas Maricio">Telas Maricio</option>
-        <option name="Nombre" value="Supertelas">Supertelas</option>
-    </select>
-    <br />
-    <label class="form-row">Descripcion:</label>
-    <select class="form-control-sm" name="descripcion">
-        <option name="Descripcion" value="Telas especializadas en prendas goticas y estilos alternativos">Telas especializadas en prendas goticas y estilos alternativos</option>
-        <option name="Descripcion" value="Telas X mayor">telas por mayor</option>
-        <option name="Descripcion" value="Telas rigidas">telas rigidas</option>
-    </select>
-    <br />
-    <label>Nombre del producto</label>
-    <select class="form-control-sm" name="Nombreproducto">
-        <option name="Nombre_producto" value="SATIN RASO">SATIN RASO</option>
-        <option name="Nombre_producto" value="CUADRILLE">CUADRILLE</option>
-        <option name="Nombre_producto" value="LATEX">LATEX</option>
-        <option name="Nombre_producto" value="BISTRECH">BISTRECH</option>
-        <option name="Nombre_producto" value="LONA">LONA</option>
-        <option name="Nombre_producto" value="LYCRA DUPONT">LYCRA DUPONT</option>
-        <option name="Nombre_producto" value="POLYESTER">POLYESTER</option>
-        <option name="Nombre_producto" value="LINO">LINO</option>
-        <option name="Nombre_producto" value="FRANELA">FRANELA</option>
-        <option name="Nombre_producto" value="TEJIDO TR">TEJIDO TR</option>
-    </select>
-    <br />
-    <label>Color</label>
-    <input type="text" name="color" value="@ViewBag.color" required />
-    <br />
-    <label>Cantidad (M2)</label>
-    <input type="number" name="cantidad" value="@ViewBag.cantidad" required />
-    <br />
-    <label>Precio Unitario</label>
-    <input type="number" name="PrecioUnitario" value="@ViewBag.precioUnitario" readonly />
-    <br />
-    <label>Iva</label>
-    <input type="number" name="Iva" value="@ViewBag.iva" readonly />
-    <br />
-    <label>Total</label>
-    <input type="number" name="Total" value="@ViewBag.total" readonly />
-    <input type="submit" value="Cargar Guia" />
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="text-left">Rut Proveedor</label>
+                <input type="text" class="form-control  w-75 mb-3" name="rut" value="@ViewBag.rut" readonly />
+
+            </div>
+            <div class="col-md-6">
+                <label class="text-left">Proveedor:</label>
+                <select class="form-control w-75  mb-3" name="proveedores">
+                    <option name="Nombre" value="Goth and Telas">Goth and Telas</option>
+                    <option name="Nombre" value="Telas Maricio">Telas Maricio</option>
+                    <option name="Nombre" value="Supertelas">Supertelas</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="text-left">Descripcion:</label>
+                <select class="form-control  w-75  mb-3" name="descripcion">
+                    <option name="Descripcion" value="Telas especializadas en prendas goticas y estilos alternativos">Telas especializadas en prendas goticas y estilos alternativos</option>
+                    <option name="Descripcion" value="Telas X mayor">telas por mayor</option>
+                    <option name="Descripcion" value="Telas rigidas">telas rigidas</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="text-left">Nombre del producto</label>
+                <select class="form-control  w-75  mb-3" name="Nombreproducto">
+                    <option name="Nombre_producto" value="SATIN RASO">SATIN RASO</option>
+                    <option name="Nombre_producto" value="CUADRILLE">CUADRILLE</option>
+                    <option name="Nombre_producto" value="LATEX">LATEX</option>
+                    <option name="Nombre_producto" value="BISTRECH">BISTRECH</option>
+                    <option name="Nombre_producto" value="LONA">LONA</option>
+                    <option name="Nombre_producto" value="LYCRA DUPONT">LYCRA DUPONT</option>
+                    <option name="Nombre_producto" value="POLYESTER">POLYESTER</option>
+                    <option name="Nombre_producto" value="LINO">LINO</option>
+                    <option name="Nombre_producto" value="FRANELA">FRANELA</option>
+                    <option name="Nombre_producto" value="TEJIDO TR">TEJIDO TR</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="text-left">Color</label>
+                <input type="text" class="form-control w-75  mb-3" name="color" value="@ViewBag.color" required />
+
+            </div>
+            <div class="col-md-6">
+                <label class="text-left">Cantidad (M2)</label>
+                <input type="number" class="form-control w-75  mb-3" name="cantidad" value="@ViewBag.cantidad" required />
+
+            </div>
+            <div class="col-md-6">
+                <label class="text-left">Precio Unitario</label>
+                <input type="number" class="form-control w-75  mb-3" name="PrecioUnitario" value="@ViewBag.precioUnitario" readonly />
+
+            </div>
+            <div class="col-md-6">
+                <label class="text-left">Iva</label>
+                <input type="number" class="form-control w-75  mb-3" name="Iva" value="@ViewBag.iva" readonly />
+
+            </div>
+            <div class="col-md-6">
+                <label class="text-left">Total</label>
+                <input type="number" class="form-control w-75  mb-3" name="Total" value="@ViewBag.total" readonly />
+            </div>
+        </div>
+    </div>
+    <div class="col text-center">
+        <button type="submit" class="btn btn-primary btn-lg m-3 cen">Cargar Guia</button>
+        </div>
 </form>
 <form method="get" action="/AdministracionStock/GenPedido" target="_blank">
     <input type="hidden" name="rutprov" value="@ViewBag.rut" />
@@ -121,3 +157,7 @@
 
 
 <p>Se ha generado guia de despacho: @ViewBag.gd</p>
+
+<hr class="mt-5 mb-5 " style="visibility: hidden; ">
+<hr class="mt-5 mb-5" style="visibility: hidden; ">
+<hr class="mt-5 mb-5" style="visibility: hidden; ">
