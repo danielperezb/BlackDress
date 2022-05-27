@@ -156,11 +156,10 @@ namespace Blackdress_Core.Controllers
             MySqlCommand sql = new MySqlCommand(query, conexion);
             MySqlDataReader reader = sql.ExecuteReader();
             var pedidos = "";
-            if (reader.HasRows)
-            {
-                if (reader.Read())
+           
+                while (reader.Read())
                 {
-                    pedidos = "";
+                    //pedidos = "";
                     string NroOrdenDeCompra = reader.GetString("NroOrdenDeCompra");
                     string medidasCorporales = reader.GetString("medidasCorporales");
                     string Rut = reader.GetString("Rut");
@@ -176,7 +175,7 @@ namespace Blackdress_Core.Controllers
                     ValorCotizacion+ "</td><td>" + Email + "</td><td>" + FechaSolicitud + "</td><td>" + tallas + "</td><td>" + color + "</td><td>" + nombreproducto + "</td></tr>";
 
                 }
-            }
+
 
             
             ViewBag.pedidos = pedidos;

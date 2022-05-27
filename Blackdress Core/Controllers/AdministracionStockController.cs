@@ -356,18 +356,17 @@ namespace Blackdress_Core.Controllers
             MySqlCommand sql = new MySqlCommand(query, conexion);
             MySqlDataReader reader = sql.ExecuteReader();
             var pedidos = "";
-            if (reader.HasRows)
-            {
-                if (reader.Read())
+          
+                while (reader.Read())
                 {
                     pedidos = "";
                     string nombreProducto = reader.GetString("nombre_producto");
                     string color = reader.GetString("Color");
                     string cantidad = reader.GetString("cantidad");
                     pedidos += "<tr><td>"+nombreProducto+"</td><td>"+color+"</td><td>"+cantidad + "</td></tr>";
-                    
+            
                 }
-            }
+        
             ViewBag.stock = pedidos;
             //SqlDataReader dr;
             //sentencia.Connection = con;
