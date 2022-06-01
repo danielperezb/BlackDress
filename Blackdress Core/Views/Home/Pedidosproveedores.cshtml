@@ -52,15 +52,16 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link " href="/Home/bodega">Bodega</a></li>
             </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item "><a class="nav-link" href="/Home/registrarse">Registarse</a></li>
-            </ul>
+
             <form class="d-flex" method="post" action="indice/login" onsubmit="">
                 <input class="form-control me-2" type="text" placeholder="Rut" aria-label="Rut" required style="width:150px" name="rut" id="rut">
                 <input class="form-control me-2" type="password" placeholder="Password" aria-label="contraseña" required style="width:150px" name="pass" id="pass">
                 <input class="btn btn-light btn-outline-success" type="submit" value="Acceder" />
                 @ViewBag.mensaje
             </form>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item "><a class="btn btn-light btn-outline-success ml-1" href="/Home/registrarse">Registarse</a></li>
+            </ul>
         </div>
     </div>
 </nav>

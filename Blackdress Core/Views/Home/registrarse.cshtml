@@ -15,16 +15,19 @@
     }
 </script>
 
-    <head>
-        <!-- CSS only -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="~/js/Validadores.js"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
-    </head>
+<head>
+    <!-- CSS only -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="~/js/Validadores.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+</head>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color:deeppink">
-    <div class="container-fluid" style="background-color:deeppink">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4" style="background-color:deeppink">
+    <div class="container-fluid rounded pt-3 pb-3" style="background-color:deeppink">
+
         <a class="navbar-brand" href="/Home/Index" style="color:white">Black Dress</a>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,45 +47,53 @@
                 </li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/carritodecompra">Carrito de compra</a></li>
+                <li class="nav-item "><a class="nav-link" href="/Home/carritodecompra">Carrito de compra</a></li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/genpedprov">Administracion de Stock</a></li>
+                <li class="nav-item"><a class="nav-link " href="/Home/genpedprov">Administracion de Stock</a></li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/bodega">Bodega</a></li>
+                <li class="nav-item "><a class="nav-link " href="/Home/Estadoconfecciones">Confecciones</a></li>
             </ul>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="/Home/registrarse">Registarse</a></li>
+                <li class="nav-item"><a class="nav-link mr-2 " href="/Home/bodega">Bodega</a></li>
             </ul>
-            <form class="d-flex" method="post">
-                <input class="form-control me-2" type="text" placeholder="E-mail or User" aria-label="usuario" required style="width:150px">
-                <input class="form-control me-2" type="password" placeholder="Password" aria-label="contraseña" required style="width:150px" max="8">
-                <button class="btn btn-outline-success" type="submit">Acceder</button>
+
+            <form class="d-flex" method="post" action="indice/login" onsubmit="">
+                <input class="form-control me-2" type="text" placeholder="Rut" aria-label="Rut" required style="width:150px" name="rut" id="rut">
+                <input class="form-control me-2" type="password" placeholder="Password" aria-label="contraseña" required style="width:150px" name="pass" id="pass">
+                <input class="btn btn-light btn-outline-success" type="submit" value="Acceder" />
+                @ViewBag.mensaje
             </form>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item "><a class="btn btn-light btn-outline-success ml-1" href="/Home/registrarse">Registarse</a></li>
+            </ul>
+
         </div>
     </div>
 </nav>
 
-<h1 class="h1">Registrarse</h1>
+<h1 class="h1 text-center" >Registrarse</h1>
 <h2 style="color: blue; font-family: 'Comic Sans MS'; animation-duration: initial; background-color: black;">@ViewBag.state @ViewBag.mensaje</h2>
-<br>
-<form method="post" action="/indice/register" class="form-check-input">
-    <label>E-mail: </label>
-    <input type="email" name="mail" required max="50" id="mail" />
-    <br />
-    <label>Nombre de usuario: </label>
-    <input type="text" name="user" required max="20" id="user" />
-    <br />
-    <label>Nombre Y Apellido: </label>
-    <input type="text" name="apellido" required max="50" id="apellido" />
-    <br />
-    <label>Rut:</label>
-    <input type="text" placeholder="11111111-1" name="rut" required maxlength="10" id="rut" />
-    <br />
-    <label>Contraseña: </label>
-    <input type="password" required max="8" name="pass" maxlength="8" id="password" />
-    <br />
-    <input type="submit" value="Registrarse" />
+<hr />
+<form method="post" action="/indice/register">
+    <div>
+        <label>E-mail: </label>
+        <input type="email" class="form-control w-75  mb-3" name="mail" required max="50" id="mail" />
+        
+        <label>Nombre de usuario: </label>
+        <input type="text" class="form-control w-75  mb-3" name="user" required max="20" id="user" />
+        
+        <label>Nombre Y Apellido: </label>
+        <input type="text" class="form-control w-75  mb-3" name="apellido" required max="50" id="apellido" />
+        
+        <label>Rut:</label>
+        <input type="text" class="form-control w-75  mb-3" placeholder="11111111-1" name="rut" required maxlength="10" id="rut" />
+        
+        <label>Contraseña: </label>
+        <input type="password" class="form-control w-75  mb-5" required max="8" name="pass" maxlength="8" id="password" />
+      
+        <input type="submit" class="btn btn-info" value="Registrarse" />
+        </div>
 </form>
 
