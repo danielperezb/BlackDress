@@ -381,5 +381,38 @@ namespace Blackdress_Core.Controllers
             //}
             return View("/Views/Home/Bodega.cshtml");
         }
+
+        public IActionResult subir_producto(string nombre_producto,string imagen,string tipo_producto, string color, string talla, int cantidad, string descripcion)
+        {
+            MySqlConnection conexion = new MySqlConnection("server=127.0.0.1; user=root; database=blackdress; password='';");
+            MySqlCommand comando = new MySqlCommand();
+            comando.Connection = conexion;
+            conexion.Open();
+            comando.CommandText = "INSERT INTO productos( nombre_producto, imagen, tipo_producto, color, talla, descripcion, cantidad) VALUES(@nombre_producto,@imagen,@tipo_producto,@color,@talla,@descripcion,@cantidad)";
+            string mensaje = "";
+
+            comando.Parameters.Clear();
+            comando.Parameters.AddWithValue("nombre_producto", nombre_producto);
+            comando.Parameters.AddWithValue("imagen",imagen);
+            comando.Parameters.AddWithValue("tipo_producto", tipo_producto);
+            comando.Parameters.AddWithValue("color", color);
+            comando.Parameters.AddWithValue("talla", talla);
+            comando.Parameters.AddWithValue("cantidad", cantidad);
+            comando.Parameters.AddWithValue("descripcion", descripcion);
+
+
+            int nfilas = comando.ExecuteNonQuery();
+            if (nfilas > 0)
+            {
+                mensaje = ("Datos guardados correctamente ");
+            }
+            else
+            {
+                mensaje = "Ha ocurrido un error, favor de verificar datos ingresados";
+            }
+
+            comando.Dispose();
+            return View("/Views/Home/Subir_productos.cshtml");
+        }
     }
 }

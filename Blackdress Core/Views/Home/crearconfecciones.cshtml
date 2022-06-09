@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Bodega";
+    ViewData["Title"] = "Estadoconfecciones";
 }
 
 <head>
@@ -30,7 +30,6 @@
                         <li><a class="dropdown-item" href="/Home/blusas">Blusas</a></li>
                         <li><a class="dropdown-item" href="/Home/zapatos">Zapatos</a></li>
                         <li><a class="dropdown-item" href="/Home/accesorios">Accesorios</a></li>
-                      
                     </ul>
                 </li>
             </ul>
@@ -46,9 +45,6 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link " href="/Home/bodega">Bodega</a></li>
             </ul>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link "href="/Home/Subir_productos">productos</a></li>
-            </ul>
 
             <form class="d-flex" method="post" action="indice/login" onsubmit="">
                 <input class="form-control me-2" type="text" placeholder="Rut" aria-label="Rut" required style="width:150px" name="rut" id="rut">
@@ -62,75 +58,46 @@
         </div>
     </div>
 </nav>
-<h1 class="h1 text-center">Bodega</h1>
+<BR>
+<h1 class="h1 text-black-50 text-center">Encargar Confecciones</h1>
+<hr />
 <br>
-<form method="post" action="/AdministracionStock/registrarPedido">
 
-    <hr/>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <label>Numero guia de despacho</label>
-                <input type="text" class="form-control w-75  mb-3" name="nrodeguia" maxlength="100" required />
-            </div>
-            <div class="col-md-6">
-                <label>Rut proveedor</label>
-                <input type="text" class="form-control w-75  mb-3" name="rutproveedor" maxlength="10" required>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <label>Nombre Producto</label>
+            <input type="text" class="form-control w-75  mb-3" name="nproducto" maxlength="100" required />
+        </div>
+        
+        <div class="col-md-6">
+            <label>tallas</label>
+            <input type="text" class="form-control w-75  mb-3" name="talla" maxlength="50" required /><br>
 
-            <div class="col-md-6">
-                <label>Nombre proveedor</label>
-                <input type="text" class="form-control w-75  mb-3" name="nombreproveedor" maxlength="35" required />
-            </div>
+        </div>
+        <div class="col-md-6">
+            <label>Color</label>
+            <input type="text" class="form-control w-75  mb-3" name="color" maxlength="50" required /><br>
 
+        </div>
+        <div class="col-md-12">
+            <label>Medidas Corporales</label>
+            <textarea class="form-control" name="medidasC" maxlength="200" required rows="2" /></textarea>
+        </div>
 
-            <div class="col-md-6">
-                <label>Nombre producto</label>
-                <input type="text" class="form-control w-75  mb-3" name="nombreprod" maxlength="50" required /><br>
-
-            </div>
-            <div class="col-md-6">
-                <label>Color</label>
-                <input type="text" class="form-control w-75  mb-3" name="color" maxlength="50" required /><br>
-
-            </div>
-            <div class="col-md-6">
-                <label>Cantidad</label>
-                <input type="number" class="form-control w-75  mb-3" name="cantidad" required /><br>
-
-            </div>
-
-            <div class="col-md-12">
-                <label>descripcion</label>
-                <textarea class="form-control" name="descripcion" maxlength="200" required rows="3" /></textarea>
-            </div>
+        <div class="col-md-12">
+            <label>Notas</label>
+            <textarea class="form-control" name="descripcion" maxlength="200" required rows="3" /></textarea>
         </div>
     </div>
-    <div class="col text-center">
-        <button type="submit" class="btn btn-primary btn-lg m-3 cen">Recepcionar </button>
-    </div>
+</div>
 
-</form>
-<br>
-<hr />
-<div class="row justify-content-center">
-    <table class="table-secondary table-bordered text-center "  border="1">
-        <tr class="table-primary" border="1">
-            <td>Nombre Material</td>
-            <td>Color</td>
-            <td>Stock</td>
-        </tr>
-        @Html.Raw(ViewBag.stock)
-    </table>
-    </div>
-    <br>
-    <form method="post" action="/AdministracionStock/updateStock" class="input-group-prepend">
-        <input type="hidden" name="nombreprod" value="@ViewBag.nombreproducto" />
-        <input type="hidden" name="color" value="@ViewBag.color" />
-        <input type="hidden" name="cantidad" value="@ViewBag.cantidad" />
-        <button type="submit" class="btn btn-primary btn-lg m-3 cen">Actualizar stok </button>
-    </form>
 
-    <form method="get" action="/AdministracionStock/MostrarStock">
-        <button type="submit" class="btn btn-primary btn-lg m-3 cen">Mostrar stok</button>
-    </form>
+<hr class="mt-5 mb-5 " style="visibility: hidden; ">
+<hr class="mt-5 mb-5" style="visibility: hidden; ">
+<hr class="mt-5 mb-5" style="visibility: hidden; ">
+<hr class="mt-5 mb-5 " style="visibility: hidden; ">
+<hr class="mt-5 mb-5" style="visibility: hidden; ">
+<hr class="mt-5 mb-5" style="visibility: hidden; ">
+<hr class="mt-5 mb-5" style="visibility: hidden; ">
+

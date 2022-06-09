@@ -131,9 +131,19 @@ namespace Blackdress_Core.Controllers
         {
             return View("Views/Home/Estadoconfecciones.cshtml");
         }
+
+        public IActionResult crearconfecciones()
+        {
+            return View("Views/Home/crearconfecciones.cshtml");
+        }
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Subir_productos()
+        {
+            return View("Views/Home/Subir_productos.cshtml");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
