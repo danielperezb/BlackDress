@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Data.SqlClient;
-
+using MySql.Data.MySqlClient;
 namespace Blackdress_Core.Controllers
 {
     public class indiceController : Controller
@@ -74,15 +74,42 @@ namespace Blackdress_Core.Controllers
             }
         }
 
+        public ActionResult productos()
+        {
+
+             MySqlConnection conexion;
+            conexion = new MySqlConnection("Server = 127.0.0.1; Database = blackdress; Uid = root; Pwd =;");
+            conexion.Open();
+            string query = "SELECT imagen FROM productos";
+            MySqlCommand sql = new MySqlCommand(query, conexion);
+            MySqlDataReader reader = sql.ExecuteReader();
+            var producto = "";
+          
+                while (reader.Read())
+                {
+                  
+                    string imagen= reader.GetString("imagen");
+                    
+                    producto += "<img class= img-fluid mb-3  style=' width: 350px; height: 250px;' src= "+imagen+" alt=>";
+            
+                }
+        
+            ViewBag.producto = producto;
+          
+                return View("Views/Home/Productos.cshtml");
+            
+          
+        }
 
 
         public ActionResult register(string rut, string user, string pass, string mail, string apellido)
         {
+
             string tipoU = "Cliente";
-            SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            MySqlConnection con = new MySqlConnection("server=127.0.0.1; user=root; database=blackdress; password='';");
             con.Open();
             var sentencia = new SqlCommand();
-            SqlDataReader dr;
+            MySqlDataReader dr;
             sentencia.CommandType = System.Data.CommandType.Text;
             sentencia.CommandText = "insert into Usuarios (Rut,NombreUsuario,NombreYapellido,contraseña,TipoUsuario,email) values (@prut,@puser,@pnameape,@ppass,@tipou,@pmail)";
             if (rut.Length == 9)
@@ -146,13 +173,13 @@ namespace Blackdress_Core.Controllers
             var mensaje = "";
             if (sw == "OK")
             {
-                sentencia.Parameters.Add(new SqlParameter("@prut", rut));
-                sentencia.Parameters.Add(new SqlParameter("@puser", user));
-                sentencia.Parameters.Add(new SqlParameter("@pnameape", apellido));
-                sentencia.Parameters.Add(new SqlParameter("@ppass", pass));
-                sentencia.Parameters.Add(new SqlParameter("@tipou", tipoU));
-                sentencia.Parameters.Add(new SqlParameter("@pmail", mail));
-                sentencia.Connection = con;
+                sentencia.Parameters.Add(new MySqlParameter("@prut", rut));
+                sentencia.Parameters.Add(new MySqlParameter("@puser", user));
+                sentencia.Parameters.Add(new MySqlParameter("@pnameape", apellido));
+                sentencia.Parameters.Add(new MySqlParameter("@ppass", pass));
+                sentencia.Parameters.Add(new MySqlParameter("@tipou", tipoU));
+                sentencia.Parameters.Add(new MySqlParameter("@pmail", mail));
+      
                 var result = sentencia.ExecuteNonQuery();
 
 

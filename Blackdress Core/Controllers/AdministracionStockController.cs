@@ -166,7 +166,7 @@ namespace Blackdress_Core.Controllers
         }
         public IActionResult GenPedido(string rutprov, string proveedores, string descripcion, int precioU, int cantidad, int iva, int totalapagar, string nombreprod, string color)
         {
-
+            
             //SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             //con.Open();
             string nrodeguia = DateTime.Now.ToString("O");
@@ -359,7 +359,7 @@ namespace Blackdress_Core.Controllers
           
                 while (reader.Read())
                 {
-                    pedidos = "";
+
                     string nombreProducto = reader.GetString("nombre_producto");
                     string color = reader.GetString("Color");
                     string cantidad = reader.GetString("cantidad");

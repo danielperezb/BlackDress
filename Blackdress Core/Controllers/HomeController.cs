@@ -146,6 +146,11 @@ namespace Blackdress_Core.Controllers
             return View("Views/Home/Subir_productos.cshtml");
         }
 
+        public IActionResult Productos()
+        {
+            return View("Views/Home/Productos.cshtml");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
