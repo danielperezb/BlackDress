@@ -75,3 +75,24 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.vertical-menu {
+    width: 200px; /* Set a width if you like */
+}
+
+.vertical-menu a {
+        background-color: #eee;
+        color: black; 
+        display: block; 
+        padding: 12px; 
+        text-decoration: none;
+    }
+
+        .vertical-menu a:hover {
+            background-color: #ccc; /* Dark grey background on mouse-over */
+        }
+
+        .vertical-menu a.active {
+            background-color: #04AA6D; /* Add a green color to the "active/current" link */
+            color: white;
+        }
