@@ -36,28 +36,29 @@ namespace Blackdress_Core.Controllers
                 return View("Views/Home/Index.cshtml");
             }
             catch (Exception e)
-            {
-                return View("/Views/Shared/Error.cshtml");
+            {                return View("/Views/Shared/Error.cshtml");
             }
         }
 
 
         public ActionResult login(string rut, string pass)
         {
-            SqlConnection con = new SqlConnection(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=BlackDressBD;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            MySqlConnection con = new MySqlConnection("Server = 127.0.0.1; Database = blackdress; Uid = root; Pwd =;");
             con.Open();
-            var sentencia = new SqlCommand();
-            SqlDataReader dr = sentencia.ExecuteReader();
+            var sentencia = new MySqlCommand();
+
             sentencia.Connection = con;
             sentencia.CommandText = "select * from Usuarios";
             sentencia.CommandType = System.Data.CommandType.Text;
+            MySqlDataReader dr = sentencia.ExecuteReader();
+           
 
             var mensaje = "";
             while (dr.Read())
             {
                 if (dr["rut"].ToString() == rut)
                 {
-                    if (dr["pass"].ToString() == pass)
+                    if (dr["clave"].ToString() == pass)
                     {
                         mensaje = "ACCESO_OK";
                     }

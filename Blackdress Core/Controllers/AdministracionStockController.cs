@@ -382,7 +382,7 @@ namespace Blackdress_Core.Controllers
             return View("/Views/Home/Bodega.cshtml");
         }
 
-        public IActionResult subir_producto(string nombre_producto,string imagen,string tipo_producto, string color, string talla, int cantidad, string descripcion)
+        public IActionResult subir_producto(string nombre_producto,string imagen,string tipo_producto, string color, string talla, int cantidad, string descripcion,int precio)
         {
             MySqlConnection conexion = new MySqlConnection("server=127.0.0.1; user=root; database=blackdress; password='';");
             MySqlCommand comando = new MySqlCommand();
@@ -399,6 +399,7 @@ namespace Blackdress_Core.Controllers
             comando.Parameters.AddWithValue("talla", talla);
             comando.Parameters.AddWithValue("cantidad", cantidad);
             comando.Parameters.AddWithValue("descripcion", descripcion);
+            comando.Parameters.AddWithValue("precio", precio);
 
 
             int nfilas = comando.ExecuteNonQuery();
