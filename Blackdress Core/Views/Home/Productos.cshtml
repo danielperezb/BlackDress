@@ -5,5 +5,10 @@
 
 <h1 class="h1 text-center">Bodega</h1>
 <br>
-@Html.Raw(ViewBag.producto)
-<img  class=img-fluid mb-3 style='width: 350px; height: 250px;' src="~/img/camisa.jpg">
+
+<div class="container">
+    <div class="row accordion">
+        @Html.Raw(ViewBag.producto)
+        </div>
+    </div>
+    <img class=img-fluid mb-3 style='width: 350px; height: 250px;' src="~/img/camisa.jpg">

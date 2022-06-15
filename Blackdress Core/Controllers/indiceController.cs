@@ -81,7 +81,7 @@ namespace Blackdress_Core.Controllers
              MySqlConnection conexion;
             conexion = new MySqlConnection("Server = 127.0.0.1; Database = blackdress; Uid = root; Pwd =;");
             conexion.Open();
-            string query = "SELECT imagen FROM productos";
+            string query = "SELECT * FROM productos";
             MySqlCommand sql = new MySqlCommand(query, conexion);
             MySqlDataReader reader = sql.ExecuteReader();
             var producto = "";
@@ -90,10 +90,28 @@ namespace Blackdress_Core.Controllers
                 {
                   
                     string imagen= reader.GetString("imagen");
-                    
-                    producto += "<img class= img-fluid mb-3  style=' width: 350px; height: 250px;' src= "+imagen+" alt=>";
-            
-                }
+                string precio = reader.GetString("precio");
+                string id = reader.GetString("id_producto");
+                string nombre = reader.GetString("nombre_producto");
+
+                producto += " <div class='product text-center col-3 '> ";
+                producto += " <form method='GET' action='sproductoU.php'>";
+                producto += "<img class= img-fluid mb-3  style=' width: 350px; height: 250px;' src= " + imagen + " alt=>";
+                producto += " <div class='star'>";
+                producto += "   <i class='fas fa-star'></i>";
+                producto += "    <i class='fas fa-star'></i>";
+                producto += "    <i class='fas fa-star'></i>";
+                producto += "    <i class='fas fa-star'></i>";
+                producto += "    <i class='fas fa-star'></i>";
+                producto += " </div>";
+                producto += " <input type='hidden' name='ID' value= " + id + ">";
+                producto += " <h5 class='p.name'> " + nombre + "</h5>";
+                producto += " <h4 class='p-price'> " + precio + "</h4>";
+                producto += "   <input type='submit' name='producto' value='comprar' class='buy-btn'>";
+                producto += "</div>";
+                producto += "</form>";
+
+            }
         
             ViewBag.producto = producto;
           
