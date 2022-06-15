@@ -388,7 +388,7 @@ namespace Blackdress_Core.Controllers
             MySqlCommand comando = new MySqlCommand();
             comando.Connection = conexion;
             conexion.Open();
-            comando.CommandText = "INSERT INTO productos( nombre_producto, imagen, tipo_producto, color, talla, descripcion, cantidad) VALUES(@nombre_producto,@imagen,@tipo_producto,@color,@talla,@descripcion,@cantidad)";
+            comando.CommandText = "INSERT INTO productos(nombre_producto, imagen, tipo_producto, color, talla, descripcion, cantidad) VALUES(@nombre_producto,@imagen,@tipo_producto,@color,@talla,@descripcion,@cantidad)";
             string mensaje = "";
 
             comando.Parameters.Clear();
@@ -413,7 +413,7 @@ namespace Blackdress_Core.Controllers
             }
 
             comando.Dispose();
-            return View("/Views/Home/Subir_productos.cshtml");
+            return View("/Views/Home/Productos.cshtml");
         }
     }
 }

@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="images\**" />
+    <Content Remove="images\**" />
+    <EmbeddedResource Remove="images\**" />
+    <None Remove="images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\img\camisa-oxford-classic-m-l-55-alg-45-poly-blanco-t-xs.jpg" />
     <None Include="wwwroot\img\camisa.jpg" />
     <None Include="wwwroot\img\teclado.jpg" />
@@ -19,10 +26,6 @@
     <PackageReference Include="MySqlConnector" Version="2.1.9" />
     <PackageReference Include="Rotativa.AspNetCore" Version="1.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="images\" />
   </ItemGroup>
 
 </Project>

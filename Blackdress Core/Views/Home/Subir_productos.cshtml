@@ -6,15 +6,50 @@
 
 <h1 class="h1 text-center">productos</h1>
 <br>
-<form method="post" action="/AdministracionStock/subir_producto">
+<div class="container">
+    <div class="row accordion">
+        <form method="post" action="/AdministracionStock/subir_producto" enctype="multipart/form-data" target="_blank">
+            <hr />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>nombre producto</label>
+                        <input type="text" class="form-control w-75  mb-3" name="nombre_producto" maxlength="100" required />
+                    </div>
+                    <div class="col-md-6">
+                        <label>imagen</label>
+                        <input type="file" class="form-control w-75  mb-3" name="imagen" maxlength="100" required>
+                    </div>
 
-    <hr/>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <label>nombre producto</label>
-                <input type="text" class="form-control w-75  mb-3" name="nombre_producto" maxlength="100" required />
+                    <div class="col-md-6">
+                        <label>tipo producto</label>
+                        <input type="text" class="form-control w-75  mb-3" name="tipo_producto" maxlength="35" required />
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <label>color</label>
+                        <input type="text" class="form-control w-75  mb-3" name="color" maxlength="50" required /><br>
+
+                    </div>
+                    <div class="col-md-6">
+                        <label>talla</label>
+                        <input type="text" class="form-control w-75  mb-3" name="talla" maxlength="50" required /><br>
+
+                    </div>
+                    <div class="col-md-6">
+                        <label>Cantidad</label>
+                        <input type="number" class="form-control w-75  mb-3" name="cantidad" required /><br>
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <label>descripcion</label>
+                        <textarea class="form-control" name="descripcion" maxlength="200" required rows="3" /></textarea>
+                    </div>
+                </div>
             </div>
+<<<<<<< HEAD
             <div class="col-md-6">
                 <label>imagen</label>
                 <input type="text" class="form-control w-75  mb-3" name="imagen" maxlength="10" required>
@@ -40,23 +75,12 @@
             <div class="col-md-6">
                 <label>precio</label>
                 <input type="number" class="form-control w-75  mb-3" name="precio" maxlength="50" required/><br>
+=======
+            <div class="col text-center">
+>>>>>>> e3e684faa918b7ef1367154e90ab60ed447fa746
 
+                <button type="submit" class="btn btn-primary btn-lg m-3 cen">subir </button>
             </div>
-            <div class="col-md-6">
-                <label>Cantidad</label>
-                <input type="number" class="form-control w-75  mb-3" name="cantidad" required /><br>
-
-            </div>
-
-            <div class="col-md-12">
-                <label>descripcion</label>
-                <textarea class="form-control" name="descripcion" maxlength="200" required rows="3" /></textarea>
-            </div>
-        </div>
+        </form>
     </div>
-    <div class="col text-center">
-
-        <button type="submit" class="btn btn-primary btn-lg m-3 cen">subir </button>
-    </div>
-
-</form>
+</div>
