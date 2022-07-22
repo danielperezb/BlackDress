@@ -78,7 +78,9 @@
         <button type="submit" class="btn btn-primary btn-lg m-3 cen">Cargar Guia</button>
         </div>
 </form>
-<form method="get" action="/AdministracionStock/GenPedido" target="_blank">
+
+<div class="mb-3">
+    <form method="get" action="/AdministracionStock/GenPedido" target="_blank">
     <input type="hidden" name="rutprov" value="@ViewBag.rut" />
     <input type="hidden" name="proveedores" value="@ViewBag.nombreprov" />
     <input type="hidden" name="descripcion" value="@ViewBag.descripcion" />
@@ -89,12 +91,14 @@
     <input type="hidden" name="nrodeguia" value="@ViewBag.gd" />
     <input type="hidden" name="nombreprod" value="@ViewBag.nombreproducto" />
     <input type="hidden" name="color" value="@ViewBag.color" />
-    <input type="submit" value="GenerarPedido" />
+    <input type="submit" value="Generar Pedido" class="btn btn-primary"/>
 </form>
+<div class="alert alert-success" role="alert">
+ <p class="col-form-label-lg">Se ha generado guia de despacho: @ViewBag.gd</p>
+</div>
+</div>
 
 
-
-<p>Se ha generado guia de despacho: @ViewBag.gd</p>
 
 <hr class="mt-5 mb-5 " style="visibility: hidden; ">
 <hr class="mt-5 mb-5" style="visibility: hidden; ">
